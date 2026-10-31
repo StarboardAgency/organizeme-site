@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://organizeme.org/sitemap.xml
