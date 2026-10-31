@@ -171,7 +171,7 @@ p { margin: 0 0 1em; }
 .about .portrait img { width: 100%; aspect-ratio: 653 / 554; object-fit: cover; object-position: top; }
 .about h2 { font-size: 1.6rem; font-weight: 400; margin-bottom: 1em; }
 .about .copy { text-align: right; }
-.about .signature { width: 220px; margin: 16px 0 24px auto; }
+.about .signature { width: 170px; margin: 16px 0 24px auto; }
 .about .btn { margin-top: 8px; }
 
 /* ---------- Process ---------- */
