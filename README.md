@@ -9,6 +9,8 @@ public/                  ← everything visitors see
   index.html             home (hero, space solutions, about, process, FAQs)
   connect.html           contact page + form            → /connect
   terms-of-service.html  terms                          → /terms-of-service
+  *-organizing.html      one page per space: closet, bedroom, bathroom,
+                         kitchen, pantry, kids-room     → /closet-organizing etc.
   404.html               not-found page
   assets/css/style.css   all styles (colors and fonts at the top)
   assets/js/main.js      menu, popups, form submit
@@ -21,7 +23,8 @@ wrangler.jsonc           Cloudflare config
 
 ## Editing
 
-- **Text:** edit the HTML file for that page. The header and footer are repeated in each page, so a change to the menu, phone number or footer needs to be made in all four `.html` files.
+- **Text:** edit the HTML file for that page. The header and footer are repeated in each page, so a change to the menu, phone number or footer needs to be made in every `.html` file in `public/`.
+- **Service pages:** each space has its own page (`/closet-organizing`, `/pantry-organizing`, …), linked from the home page cards, the footer and each other. If you add a page, also add it to `sitemap.xml` and the footer.
 - **Images:** add to `public/images/` (WebP, about 800px wide for cards). Keep file names lowercase with dashes.
 - **Colors and fonts:** CSS variables at the top of `public/assets/css/style.css`.
 - **Who receives form emails:** `CONTACT_TO` in `wrangler.jsonc` (comma-separated; each address gets its own copy).
