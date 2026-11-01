@@ -16,7 +16,7 @@
     { "name": "EMAIL" }
   ],
   "vars": {
-    "CONTACT_TO": "jenn@organizeme.org",
+    "CONTACT_TO": "jenn@organizeme.org, jenn.agnew@icloud.com",
     "MAIL_FROM": "website@organizeme.org"
   },
   "observability": { "enabled": true }

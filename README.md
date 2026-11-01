@@ -24,7 +24,7 @@ wrangler.jsonc           Cloudflare config
 - **Text:** edit the HTML file for that page. The header and footer are repeated in each page, so a change to the menu, phone number or footer needs to be made in all four `.html` files.
 - **Images:** add to `public/images/` (WebP, about 800px wide for cards). Keep file names lowercase with dashes.
 - **Colors and fonts:** CSS variables at the top of `public/assets/css/style.css`.
-- **Who receives form emails:** `CONTACT_TO` in `wrangler.jsonc`.
+- **Who receives form emails:** `CONTACT_TO` in `wrangler.jsonc` (comma-separated; each address gets its own copy).
 
 Every push to `main` deploys automatically once the repo is connected to Cloudflare (below).
 

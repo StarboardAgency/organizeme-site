@@ -103,20 +103,35 @@ async function handleContact(request, env) {
     return json({ ok: false, error: fallbackMsg() }, 500);
   }
 
-  try {
-    await env.EMAIL.send({
-      to: env.CONTACT_TO || 'jenn@organizeme.org',
-      from: { email: env.MAIL_FROM || 'website@organizeme.org', name: 'Organize Me! Website' },
-      replyTo: { email, name },
-      subject: `New consultation request: ${name} (${spaceList})`.slice(0, 200),
-      text,
-      html,
-    });
-    return json({ ok: true });
-  } catch (err) {
-    console.error('Contact form send failed:', err && err.code, err && err.message);
-    return json({ ok: false, error: fallbackMsg() }, 502);
-  }
+  // CONTACT_TO may list several addresses (comma-separated). Each gets its own
+  // message, so a problem with one inbox never blocks delivery to the others.
+  const recipients = String(env.CONTACT_TO || 'jenn@organizeme.org')
+    .split(/[,;\s]+/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  const results = await Promise.allSettled(
+    recipients.map((to) =>
+      env.EMAIL.send({
+        to,
+        from: { email: env.MAIL_FROM || 'website@organizeme.org', name: 'Organize Me! Website' },
+        replyTo: { email, name },
+        subject: `New consultation request: ${name} (${spaceList})`.slice(0, 200),
+        text,
+        html,
+      })
+    )
+  );
+
+  results.forEach((r, i) => {
+    if (r.status === 'rejected') {
+      console.error(`Contact form send failed to ${recipients[i]}:`, r.reason && r.reason.code, r.reason && r.reason.message);
+    }
+  });
+
+  // Tell the visitor it worked as long as at least one copy went out.
+  if (results.some((r) => r.status === 'fulfilled')) return json({ ok: true });
+  return json({ ok: false, error: fallbackMsg() }, 502);
 }
 
 function fallbackMsg() {
