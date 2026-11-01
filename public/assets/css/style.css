@@ -313,7 +313,7 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 18px; }
 .check-list li:last-child { border-bottom: 0; }
 .check-list li::before { content: ""; position: absolute; left: 4px; top: 15px; width: 12px; height: 7px; border-left: 2px solid var(--coral); border-bottom: 2px solid var(--coral); transform: rotate(-45deg); }
 
-.faq .more-faq { text-align: center; margin-top: 24px; }
+.faq .more-faq { text-align: center; margin: 28px 0 0; }
 .faq .more-faq a { color: var(--blue); font-weight: 600; }
 
 .cta-band { background: var(--blue); color: var(--white); text-align: center; padding: 72px 0; }
